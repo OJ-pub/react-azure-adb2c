@@ -124,7 +124,9 @@ const authentication = {
     };
   },
   signOut: () => window.msal.logout(),
+  profilEdit:() => window.msal.profilEdit(),
   getAccessToken: () => state.accessToken
+
 }
 
 export default authentication;
