@@ -17,7 +17,7 @@ var appConfig = {
   signInPolicy: null,
   resetPolicy: null,
   applicationId: null,
-  profileEdit :null,
+  profileEditPolicy :null,
   cacheLocation: null,
   redirectUri: null,
   postLogoutRedirectUri: null
@@ -74,6 +74,7 @@ const authentication = {
     appConfig = config;
     const instance = config.instance ? config.instance : 'https://login.microsoftonline.com/tfp/';
     const authority = `${instance}${config.tenant}/${config.signInPolicy}`;
+    const profileauthority = `${instance}${config.tenant}/${config.profileEditPolicy}`;
     let scopes = config.scopes;
     if (!scopes || scopes.length === 0) {
       console.log('To obtain access tokens you must specify one or more scopes. See https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-access-tokens');
