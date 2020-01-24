@@ -17,6 +17,7 @@ var appConfig = {
   signInPolicy: null,
   resetPolicy: null,
   applicationId: null,
+  profileEdit :null,
   cacheLocation: null,
   redirectUri: null,
   postLogoutRedirectUri: null
