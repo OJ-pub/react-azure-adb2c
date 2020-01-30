@@ -73,7 +73,7 @@ const authentication = {
   initialize: (config) => {
     appConfig = config;
     const instance = config.instance ? config.instance : 'https://login.microsoftonline.com/tfp/';
-    const authority = `${instance}${config.tenant}/${config.signInPolicy}`;
+    const signInAuthority = `${instance}${config.tenant}/${config.signInPolicy}`;
     const profileauthority = `${instance}${config.tenant}/${config.profileEditPolicy}`;
     let scopes = config.scopes;
     if (!scopes || scopes.length === 0) {
@@ -83,7 +83,7 @@ const authentication = {
     state.scopes = scopes;
     
     new Msal.UserAgentApplication(config.applicationId,
-      authority,
+      signInAuthority,
       authCallback,
       { logger: logger,
         cacheLocation: config.cacheLocation,
@@ -126,7 +126,12 @@ const authentication = {
     };
   },
   signOut: () => window.msal.logout(),
-  profilEdit:() => window.msal.profilEdit(),
+   profileEdit: ()=>
+   {const instance = appConfig.instance ? appConfig.instance : 'https://login.microsoftonline.com/tfp/';
+  const localMsalApp = window.msal;
+     localMsalApp.authority =`${appConfig.instance}${appConfig.tenant}/${appConfig.profileEditPolicy}`;
+     localMsalApp.loginRedirect(state.scopes);
+},
   getAccessToken: () => state.accessToken
 
 }
